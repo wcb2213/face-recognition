@@ -4,15 +4,15 @@ import os
 import webcam
 
 
-def ensure_dir_exists(path):
-    if not os.path.isdir(path):
+def ensure_dir_exists(path):# 如果不存在path目录，则创建
+    if not os.path.isdir(path):## os用于文件及路径操作 os的path模块可用来实现不同系统的路径 os.path.join('test','a.txt')
         os.mkdir(path)
 
 
 def take_training_photos(name, n):
     for i in range(n):
         for face in webcam.capture().faces():
-            normalized = face.gray().scale(100, 100)
+            normalized = face.gray().scale(100, 100)#100*100的灰度图
 
             face_path = 'training_images/{}'.format(name)
             ensure_dir_exists(face_path)
@@ -22,7 +22,7 @@ def take_training_photos(name, n):
 
 
 def parse_command():
-    args = sys.argv[1:]
+    args = sys.argv[1:]## sys的命令行参数
     return args[0] if args else None
 
 
